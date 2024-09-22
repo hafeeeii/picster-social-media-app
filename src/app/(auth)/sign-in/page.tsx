@@ -1,9 +1,10 @@
 import React from 'react'
+import SignInForm from './SignInForm'
 
-const page = () => {
+const Page = () => {
   return (
-    <div>page</div>
+    <SignInForm/>
   )
 }
 
-export default page
+export default Page

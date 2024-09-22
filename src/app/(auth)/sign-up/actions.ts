@@ -9,7 +9,6 @@ import { cookies } from "next/headers";
 
 export const signUp = async (formData: SignUpData):
     Promise<{ error: string }> => {
- console.log(formData,'this is form data')
     try {
         const { userName, email, password } = signUpDataSchema.parse(formData)
 

@@ -13,7 +13,7 @@ export type SignUpData = z.infer<typeof signUpDataSchema>
 
 
 export const signInDataSchema = z.object({
-    email: genericSchema,
+    userName: genericSchema,
     password: genericSchema,
 
 })
