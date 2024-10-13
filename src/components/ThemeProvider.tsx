@@ -6,11 +6,15 @@ import { type ThemeProviderProps } from "next-themes/dist/types"
 import { Toaster } from "./ui/toaster"
 
 export function ThemeProvider({ children, ...props }: ThemeProviderProps) {
+    const [isClient, setIsClient] = React.useState(false)
 
+    React.useEffect(() => {
+        setIsClient(true)
+    },[])
     
     return <NextThemesProvider {...props}>
 
         {children}
-   {window?.document &&   <Toaster />}
+   {isClient && <Toaster />}
     </NextThemesProvider>
 }

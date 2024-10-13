@@ -38,7 +38,7 @@ export function PostEditor() {
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="min-w-[400px] space-y-6">
+      <form onSubmit={form.handleSubmit(onSubmit)} className="min-w-[600px] space-y-6">
         <FormField
           control={form.control}
           name="content"
@@ -56,7 +56,9 @@ export function PostEditor() {
             </FormItem>
           )}
         />
+        <div className="flex w-full justify-end">
         <Button disabled={isPending} type="submit">Submit</Button>
+        </div>
       </form>
     </Form>
   )

@@ -1,5 +1,6 @@
 'use client'
 import React from 'react'
+import { ThemeToggle } from './ThemeToggle'
 
 const Navbar = () => {
   return (
@@ -10,6 +11,7 @@ const Navbar = () => {
       </div>
       <div>
         options
+        <ThemeToggle/>
       </div>
       <div>
          profile and notificationns

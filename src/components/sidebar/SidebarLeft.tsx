@@ -13,7 +13,7 @@ const list = [
 const SidebarLeft = () => {
 
     return (
-        <div className="text-white h-full w-full flex flex-col gap-8 ">
+        <div className=" h-full w-full flex flex-col gap-8 ">
             <ul className="flex flex-col gap-10 h-full p-10" >
             {list.map((val,index) => (
                     <li  key={index} className="flex gap-4 cursor-pointer" >
