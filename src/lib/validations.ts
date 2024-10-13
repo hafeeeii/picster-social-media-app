@@ -20,3 +20,9 @@ export const signInDataSchema = z.object({
 
 export type SignInData = z.infer<typeof signInDataSchema>
 
+export const createPostSchema = z.object({
+    content: genericSchema
+})
+
+export type CreatePostT = z.infer<typeof createPostSchema>
+

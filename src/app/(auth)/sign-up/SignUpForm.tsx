@@ -5,18 +5,19 @@ import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
 import { Form, FormControl, FormField, FormItem, FormMessage } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
+import { useToast } from '@/hooks/use-toast'
 import { SignUpData, signUpDataSchema } from '@/lib/validations'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useRouter } from 'next/navigation'
 import React, { useTransition } from 'react'
 import { useForm } from 'react-hook-form'
-import {toast} from 'react-hot-toast'
 
 const SignUpForm = () => {
 
   const [isPending, startTransition] = useTransition()
 
   const router = useRouter()
+  const { toast } = useToast()
 
  
 
@@ -35,7 +36,12 @@ const SignUpForm = () => {
     startTransition(async () => {
       const {error} = await signUp(data)
       if (!error) router.push('/')
-        else toast.error(error)
+       if (error) {
+        toast({
+          title: "Sign-up Error",
+          description: error,
+        })
+       }
     })
   }
 
