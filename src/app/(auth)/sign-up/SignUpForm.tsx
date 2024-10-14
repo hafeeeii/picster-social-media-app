@@ -1,7 +1,7 @@
 'use client'
 
+import CustomButton from '@/components/CustomButton'
 import { signUp } from './actions'
-import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
 import { Form, FormControl, FormField, FormItem, FormMessage } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
@@ -105,9 +105,9 @@ const SignUpForm = () => {
     </Form>
     </CardContent>
         <CardFooter className="flex justify-between">
-        <Button  onClick={handleSubmit(onSubmit)} type="submit" disabled={!form?.formState?.isValid || !errors || isPending}> 
+        <CustomButton   onClick={handleSubmit(onSubmit)} type="submit" isPending={isPending} disabled={!form?.formState?.isValid || !errors || isPending}> 
           Submit
-          </Button>
+        </CustomButton>
       </CardFooter>
    </Card>
   )

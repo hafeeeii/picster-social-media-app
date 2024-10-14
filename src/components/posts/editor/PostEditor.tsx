@@ -2,7 +2,6 @@
 
 import { useForm } from "react-hook-form"
 
-import { Button } from "@/components/ui/button"
 import {
   Form,
   FormControl,
@@ -15,6 +14,7 @@ import { CreatePostT } from "@/lib/validations"
 import { submitPost } from "./actions"
 import { useTransition } from "react"
 import { toast } from "@/hooks/use-toast"
+import CustomButton from "@/components/CustomButton"
 
 
 
@@ -57,7 +57,9 @@ export function PostEditor() {
           )}
         />
         <div className="flex w-full justify-end">
-        <Button disabled={isPending} type="submit">Submit</Button>
+          <CustomButton disabled={isPending} isPending={isPending}>
+            Post
+          </CustomButton>
         </div>
       </form>
     </Form>
