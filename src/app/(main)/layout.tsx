@@ -4,6 +4,7 @@ import "../globals.css";
 import { validateRequest } from "@/auth";
 import { redirect } from "next/navigation";
 import Navbar from "@/components/Navbar";
+import SessionProvider from "@/components/SessionProvider";
 
 // const geistSans = localFont({
 //   src: "./fonts/GeistVF.woff",
@@ -26,17 +27,19 @@ export default async function Layout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-    const session = await validateRequest();
-    if (!session.user) redirect('/sign-up')
+  const session = await validateRequest();
+  if (!session.user) redirect('/sign-up')
   return (
     <html lang="en" >
       <body
-      className=" mx-auto w-full "
+        className=" mx-auto w-full "
       >
-        <Navbar/>
-        <div className="min-h-screen w-full">
-        {children}
-        </div>
+        <SessionProvider value={session}>
+          <Navbar />
+          <div className="min-h-screen w-full">
+            {children}
+          </div>
+        </SessionProvider>
       </body>
     </html>
   );
