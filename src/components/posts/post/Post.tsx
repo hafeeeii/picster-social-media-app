@@ -2,15 +2,18 @@ import Tooltip from '@/components/Tooltip'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
 import { ChartNoAxesCombined, Heart, MessageCircle, Repeat2 } from 'lucide-react'
-import type { Post } from '@prisma/client'
 import React from 'react'
+import Moment from 'moment';
+import { PostWithUserT } from '@/types/post'
 
 type Props = {
-  post: Post
+  post: PostWithUserT
 }
+
 
 const Post = (props:Props) => {
   const {post} = props
+
   const actionButtons = [
     {icon:<Heart size={17} />, tooltipContent:'Like' },
     {icon:<MessageCircle size={17} />, tooltipContent:'comment' },
@@ -25,10 +28,10 @@ const Post = (props:Props) => {
           <AvatarFallback>CN</AvatarFallback>
         </Avatar>
         <CardTitle>
-          hafis
+          {post.user?.userName}
         </CardTitle>
         <CardDescription>
-          @hafis . Oct 12
+          @{post.user?.userName} . {Moment(post.createdAt).fromNow()}
         </CardDescription>
       </CardHeader>
       <CardContent>

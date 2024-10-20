@@ -3,11 +3,25 @@ import Post from '@/components/posts/post/Post'
 import SidebarLeft from '@/components/sidebar/SidebarLeft'
 import { Separator } from '@/components/ui/separator'
 import prisma from '@/lib/db'
+import { PostWithUserT } from '@/types/post'
 import React from 'react'
 
 
 const Home = async () => {
-  const posts = await prisma.post.findMany()
+  const posts:PostWithUserT[] = await prisma.post.findMany({
+    include: {
+      user:{
+        select: {
+          id: true,
+          userName:true,
+          email: true,
+          createdAt: true,
+        }
+      }
+    }
+  })
+
+
   return (
     <div className='flex justify-between w-full h-screen '>
       <div className='h-full flex-none w-[20vw]'>
