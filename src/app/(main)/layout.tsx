@@ -3,8 +3,10 @@ import type { Metadata } from "next";
 import "../globals.css";
 import { validateRequest } from "@/auth";
 import { redirect } from "next/navigation";
-import Navbar from "@/components/Navbar";
 import SessionProvider from "@/components/SessionProvider";
+import { SidebarProvider } from "@/components/ui/sidebar";
+import SidebarLeft from "@/components/sidebar/SidebarLeft";
+import SidebarRight from "@/components/sidebar/SidebarRight";
 
 // const geistSans = localFont({
 //   src: "./fonts/GeistVF.woff",
@@ -32,13 +34,18 @@ export default async function Layout({
   return (
     <html lang="en" >
       <body
-        className=" mx-auto w-full "
+        className="w-full max-h-[100vh] overflow-hidden "
       >
         <SessionProvider value={session}>
-          <Navbar />
-          <div className="min-h-screen w-full">
-            {children}
-          </div>
+          {/* <Navbar /> */}
+          {/* <Separator orientation="horizontal" /> */}
+          <SidebarProvider>
+      <SidebarLeft />
+      <main className="flex justify-center w-full">
+        {children}
+      </main>
+      <SidebarRight/>
+    </SidebarProvider>
         </SessionProvider>
       </body>
     </html>

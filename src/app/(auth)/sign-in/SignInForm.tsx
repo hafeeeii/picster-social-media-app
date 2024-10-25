@@ -33,7 +33,7 @@ const SignInForm = () => {
   const onSubmit = async (data:SignInData) => {
     startTransition(async () => {
       const {error} = await signIn(data)
-      if (!error) router.push('/')
+      if (!error) router.push('/home')
     })
   }
 

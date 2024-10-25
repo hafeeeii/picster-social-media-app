@@ -35,7 +35,7 @@ const SignUpForm = () => {
   const onSubmit = async (data:SignUpData) => {
     startTransition(async () => {
       const {error} = await signUp(data)
-      if (!error) router.push('/')
+      if (!error) router.push('/home')
        if (error) {
         toast({
           title: "Sign-up Error",

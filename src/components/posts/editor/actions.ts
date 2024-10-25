@@ -3,6 +3,7 @@
 import { validateRequest } from "@/auth";
 import prisma from "@/lib/db";
 import { createPostSchema, CreatePostT } from "@/lib/validations";
+import { revalidatePath } from "next/cache";
 
 export async function submitPost(formData:CreatePostT) {
 
@@ -18,6 +19,7 @@ export async function submitPost(formData:CreatePostT) {
             }
         })
 
+        revalidatePath('/')
         return newPost
       
 }
