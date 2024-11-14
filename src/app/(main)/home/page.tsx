@@ -19,7 +19,14 @@ const Home = async () => {
           email: true,
           createdAt: true,
         }
+      },
+      likes:true,
+      _count:{
+        select: {
+          likes:true
+        }
       }
+      
     },
     orderBy: {
       createdAt: 'desc'

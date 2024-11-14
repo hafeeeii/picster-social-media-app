@@ -30,7 +30,7 @@ export default async function Layout({
   children: React.ReactNode;
 }>) {
   const session = await validateRequest();
-  if (!session.user) redirect('/sign-up')
+  if (!session.user) redirect('/sign-in')
   return (
     <html lang="en" >
       <body

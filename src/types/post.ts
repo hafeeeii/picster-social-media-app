@@ -9,6 +9,18 @@ export type PostWithUserT = Prisma.PostGetPayload<{
                 email: true,
                 createdAt: true,
             }
+        },
+        likes:true,
+        _count:{
+            select: {
+                likes:true
+            }
         }
+
     }
 }>
+
+export type LikeInfoT = {
+    likes: number;
+    isLikedByUser: boolean;
+  }

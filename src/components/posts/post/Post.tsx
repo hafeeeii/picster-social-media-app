@@ -1,10 +1,12 @@
-import Tooltip from '@/components/Tooltip'
+'use client'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
-import { ChartNoAxesCombined, Heart, MessageCircle, Repeat2 } from 'lucide-react'
+import { ChartNoAxesCombined, MessageCircle, Repeat2 } from 'lucide-react'
 import React from 'react'
 import Moment from 'moment';
 import { PostWithUserT } from '@/types/post'
+import LikeButton from '../LikeButton'
+import { useSession } from '@/components/SessionProvider'
 
 type Props = {
   post: PostWithUserT
@@ -13,9 +15,15 @@ type Props = {
 
 const Post = (props:Props) => {
   const {post} = props
+  const {user} = useSession()
+
+  console.log(post,'this is ost')
 
   const actionButtons = [
-    {icon:<Heart size={17} />, tooltipContent:'Like' },
+    {icon:<LikeButton postId={post.id} initialState={{
+      isLikedByUser:post.likes.some(val => val.userId === user.id),
+      likes: post._count.likes
+    }} />, tooltipContent:'Like' },
     {icon:<MessageCircle size={17} />, tooltipContent:'comment' },
     {icon:<Repeat2 size={17} />, tooltipContent: 'Repost' },
     {icon:<ChartNoAxesCombined size={17} />, tooltipContent: 'View'},
@@ -41,11 +49,10 @@ const Post = (props:Props) => {
       </CardContent>
       <CardFooter className='text-sm text-muted-foreground flex justify-between pr-20'>
         {actionButtons.map((val,index) => (
-        <Tooltip content={val.tooltipContent} key={index}>
-          <div className='cursor-pointer hover:text-primary' >
+          <div key={index} className='cursor-pointer hover:text-primary' >
           {val.icon}
           </div>
-        </Tooltip>
+
         ))}
 
       </CardFooter>

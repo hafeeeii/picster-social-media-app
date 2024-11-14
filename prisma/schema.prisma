@@ -16,8 +16,8 @@ model User {
   createdAt DateTime  @default(now())
   posts     Post[]
   sessions  Session[]
-  Like      Like[]
-  Comment   Comment[]
+  likes      Like[]
+  comments   Comment[]
 
   @@map("users")
 }
@@ -38,8 +38,8 @@ model Post {
   content   String
   createdAt DateTime  @default(now())
   user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
-  Like      Like[]
-  Comment   Comment[]
+  likes      Like[]
+  comments   Comment[]
 
   @@map("posts")
 }
